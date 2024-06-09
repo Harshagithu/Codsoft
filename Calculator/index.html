@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculator</title>
+<style>
+    body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+.calculator {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  background-color: white;
+}
+#display {
+  width: 93%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 18px;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+button {
+  padding: 10px;
+  font-size: 18px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.operator {
+  background-color: #ff9900;
+  color: white;
+  border-color: #ff9900;
+}
+</style>
+</head>
+<body>
+  <div class="calculator"> 
+    <center><h1>Calculator Demo</h1></center>
+    <input type="text" id="display" disabled>
+    <div class="buttons">
+        <button onclick="option('(')">(</button>
+        <button onclick="clearOne()">CE</button>
+        <button onclick="option(')')">)</button>
+        <button id="clear" onclick="clear()">C</button>
+        <button onclick="option('1')">1</button>
+        <button onclick="option('2')">2</button>
+        <button onclick="option('3')">3</button>
+        <button class="operator" onclick="option('+')">+</button>
+        <button onclick="option('4')">4</button>
+        <button onclick="option('5')">5</button>
+        <button onclick="option('6')">6</button>
+        <button class="operator" onclick="option('-')">-</button>
+        <button onclick="option('7')">7</button>
+        <button onclick="option('8')">8</button>
+        <button onclick="option('9')">9</button>
+        <button class="operator" onclick="option('*')">*</button>
+        <button onclick="option('.')">.</button>
+        <button onclick="option('0')">0</button>
+        <button id="equals" onclick="calculate()">=</button>
+        <button class="operator" onclick="option('/')">/</button>     
+    </div>
+  </div>
+  <script>
+    let currentInput = "";
+    let ch = "";
+    let len = 0;
+    function option(character) {
+        currentInput = currentInput+character;
+        document.getElementById("display").value = currentInput;
+        }
+        function clear() {
+        document.getElementById("display").value =" ";
+        }
+        function clearOne() {          	
+             currentInput = currentInput.slice(0,-1);
+             document.getElementById("display").value = currentInput;
+        	}
+        function calculate() {
+        try {
+            const result = eval(currentInput);
+            document.getElementById("display").value = result;
+            currentInput = result.toString();
+        } catch (error) {
+            document.getElementById("display").value = "Error";
+            currentInput = "";
+        }
+    }
+  </script>
+</body>
+</html>
